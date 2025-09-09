@@ -87,10 +87,11 @@ At 2021-06-26T00:00:48.000Z, the automated requests start returning 401 (UNAUTHO
 - **Pattern:** Exactly every hour at 48 seconds past the hour
 - **Duration:** Multiple days with session management
 
-Q 1/2: Is there a way for a hacker to access Daikibo's manufacturing status dashboard directly from the internet?
+### Q 1/2: Is there a way for a hacker to access Daikibo's manufacturing status dashboard directly from the internet?
 No, the attacker has no direct access to the status dashboard.
 In the original scope of the project we have listed that the dashboard will be living in Daikibo's intranet. The only remote access to it would be through VPN tunnelling.
-Q 2/2: Looking at the web_requests.log, what is the user ID with the most suspicious activity?
+
+### Q 2/2: Looking at the web_requests.log, what is the user ID with the most suspicious activity?
 mdB7yD2dp1BFZPontHBQ1Z
 It starts off with a regular login -> browsing of the dashboard. But then it turns into a regular, once-per-hour (see the time stamps) automated check of the statuses in all 4 factories with no page resources being loaded and with an obviously non-human punctuality
 
