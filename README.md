@@ -1,3 +1,4 @@
+## Problem statement
 A major news publication has revealed sensitive private information about Daikibo Industrials, our client. A production problem has caused its assembly lines to stop, threatening the smooth operation of supply chains relying on Daikibo’s products. The client suspects the security of their new status board may have been breached.
 In this task you will be joining our cyber security team. Your job is to:
 
@@ -20,7 +21,7 @@ Sessions made on different dates require new logins
 There is no continuous polling/pushing of data between client and server - the users need to refresh the page to get the latest data
 Hint: For an easier visual inspection, open up the file in a code editor like Sublime Text or Visual Studio Code, expand the window to the full width of your screen and decrease font size until no text breaks on a new line
 When you believe you have completed the 2 tasks above, submit your work by taking a quick quiz to check your discoveries. Start the quiz by clicking 'Start your quiz' below. Good luck!
-
+## Solution
 ## Step-by-Step Analysis of the Web Activity Logs
 
 I analyzed the web activity logs to identify suspicious automated behavior that could indicate a security breach. Here's my systematic approach:
@@ -85,6 +86,14 @@ At 2021-06-26T00:00:48.000Z, the automated requests start returning 401 (UNAUTHO
 - **Behavior:** Automated hourly polling of all factory machine statuses
 - **Pattern:** Exactly every hour at 48 seconds past the hour
 - **Duration:** Multiple days with session management
+
+Q 1/2: Is there a way for a hacker to access Daikibo's manufacturing status dashboard directly from the internet?
+No, the attacker has no direct access to the status dashboard.
+In the original scope of the project we have listed that the dashboard will be living in Daikibo's intranet. The only remote access to it would be through VPN tunnelling.
+Q 2/2: Looking at the web_requests.log, what is the user ID with the most suspicious activity?
+mdB7yD2dp1BFZPontHBQ1Z
+It starts off with a regular login -> browsing of the dashboard. But then it turns into a regular, once-per-hour (see the time stamps) automated check of the statuses in all 4 factories with no page resources being loaded and with an obviously non-human punctuality
+
 
 This systematic data extraction suggests someone is automatically harvesting sensitive production information from all factories, which could explain how private information about Daikibo's production problems was leaked to the news publication.
 
